@@ -20,6 +20,12 @@
  * Explanation:
  * There is no index that satisfies the conditions in the problem statement.
  * <p>
+ * Example 3:
+ * Input: nums = [-1, -1, -1, 0, 1, 1]
+ * Output: 0
+ * Explanation:
+ * The sum of numbers to the left of the index that is none is 0 which is equal to the sum of numbers to the right of
+ * index 0
  * Constraints:
  * The length of nums will be in the range [0, 10000].
  * Each element nums[i] will be an integer in the range [-1000, 1000].
