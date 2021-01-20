@@ -1,5 +1,22 @@
 import java.util.*;
 
+/**
+ * Pascal's Triangle
+ * <p>
+ * Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
+ * In Pascal's triangle, each number is the sum of the two numbers directly above it.
+ * <p>
+ * Example:
+ * Input: 5
+ * Output:
+ * [
+ *     [1],
+ *    [1,1],
+ *   [1,2,1],
+ *  [1,3,3,1],
+ * [1,4,6,4,1]
+ * ]
+ */
 public class PascalsTriangle {
   public static void main(String[] args) {
     List<List<Integer>> triangle = generate(10);
@@ -10,7 +27,7 @@ public class PascalsTriangle {
       System.out.println();
     }
   }
-  
+
   public static List<List<Integer>> generate(int numRows) {
     List<List<Integer>> triangle = new ArrayList<>();
     for (int i = 0; i < numRows; ++i) {
