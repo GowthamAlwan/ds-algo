@@ -45,7 +45,7 @@ public class PlusOne {
       }
       digits[i] = newVal;
     }
-    // if the array had 9, 9, then the size of the array should be increased to accommodate the extra digit
+    
     if (remainder == 1) {
       int[] newDigits = new int[digits.length + 1];
       newDigits[0] = remainder;
