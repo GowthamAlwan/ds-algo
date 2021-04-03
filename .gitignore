@@ -9,3 +9,11 @@ target/
 *.iml
 *.ipr
 out/
+
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cach
