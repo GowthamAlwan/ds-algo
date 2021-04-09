@@ -29,7 +29,7 @@ public class MyDoublyLinkedList {
     MyDoublyLinkedList newNode = new MyDoublyLinkedList(val);
     if (head != null) {
       MyDoublyLinkedList temp = head;
-      while(temp.next != null) {
+      while (temp.next != null) {
         temp = temp.next;
       }
       temp.next = newNode;
@@ -45,6 +45,7 @@ public class MyDoublyLinkedList {
       head = head.next;
       if (head != null)
         head.prev = null;
+      size--;
       return;
     }
     if (index < size) {
@@ -58,6 +59,8 @@ public class MyDoublyLinkedList {
       prev.next = next;
       if (next != null)
         next.prev = prev;
+
+      size--;
     }
   }
 
@@ -78,7 +81,7 @@ public class MyDoublyLinkedList {
       addAtHead(val);
       return;
     }
-    
+
     if (index > size)
       return;
 
@@ -94,19 +97,17 @@ public class MyDoublyLinkedList {
       iter = iter.next;
     }
     MyDoublyLinkedList prev = iter.prev;
-    MyDoublyLinkedList next = iter.next;
     newNode.prev = prev;
-    newNode.next = prev.next;
+    newNode.next = iter;
     prev.next = newNode;
-    if (next != null)
-      next.prev = newNode;
+    iter.prev = newNode;
     size++;
   }
 
   void printForward() {
     MyDoublyLinkedList temp = new MyDoublyLinkedList();
     temp = head;
-    while(temp != null) {
+    while (temp != null) {
       System.out.print(temp.val + " ");
       temp = temp.next;
     }
@@ -116,10 +117,10 @@ public class MyDoublyLinkedList {
   void printBackward() {
     MyDoublyLinkedList temp = new MyDoublyLinkedList();
     temp = head;
-    while(temp.next != null) {
+    while (temp.next != null) {
       temp = temp.next;
     }
-    while(temp != null) {
+    while (temp != null) {
       System.out.print(temp.val + " ");
       temp = temp.prev;
     }
@@ -128,8 +129,25 @@ public class MyDoublyLinkedList {
 
   public static void main(String[] args) {
     MyDoublyLinkedList linkedList = new MyDoublyLinkedList();
-    linkedList.addAtHead(1);
-    linkedList.deleteAtIndex(0);
+    linkedList.addAtHead(9);
+    linkedList.printForward();
+    linkedList.addAtIndex(1, 1);
+    linkedList.printForward();
+    linkedList.addAtIndex(1, 7);
+    linkedList.printForward();
+    linkedList.deleteAtIndex(1);
+    linkedList.printForward();
+    linkedList.addAtHead(7);
+    linkedList.printForward();
+    linkedList.addAtHead(4);
+    linkedList.printForward();
+    linkedList.deleteAtIndex(1);
+    linkedList.printForward();
+    linkedList.addAtIndex(1, 4);
+    linkedList.printForward();
+    linkedList.addAtHead(2);
+    linkedList.printForward();
+    linkedList.deleteAtIndex(5);
     linkedList.printForward();
   }
 }
