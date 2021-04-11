@@ -8,4 +8,13 @@ public class ListNode {
     val = x;
     next = null;
   }
+
+  ListNode() {
+  }
+
+  ListNode(int val, ListNode next) {
+    this.val = val;
+    this.next = next;
+  }
+
 }
