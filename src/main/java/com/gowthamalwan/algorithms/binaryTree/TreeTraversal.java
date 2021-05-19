@@ -1,7 +1,9 @@
 package com.gowthamalwan.algorithms.binaryTree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class TreeTraversal {
   public void preorderTraversal(TreeNode node, List<Integer> list) {
@@ -26,6 +28,36 @@ public class TreeTraversal {
       postorderTraversal(node.right, list);
       list.add(node.val);
     }
+  }
+
+  public List<List<Integer>> levelOrder(TreeNode root) {
+    List<List<Integer>> result = new ArrayList<>();
+    if (root == null) {
+      return result;
+    }
+    List<Integer> rootLevel = new ArrayList<>();
+    rootLevel.add(root.val);
+    result.add(rootLevel);
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    
+    while (queue.peek() != null) {
+      List<Integer> level = new ArrayList<>();
+      int size = queue.size();
+      for (int i = 0; i < size; i++) {
+        TreeNode node = queue.poll();
+        if (node.left != null) {
+          level.add(node.left.val);
+          queue.add(node.left);
+        }
+        if (node.right != null) { 
+          level.add(node.right.val);
+          queue.add(node.right);
+        }
+      }
+      if (!level.isEmpty()) result.add(level);
+    }
+    return result;
   }
 
   public static void main(String[] args) {
@@ -58,5 +90,17 @@ public class TreeTraversal {
     for (Integer i : postorderTraversal) {
       System.out.print(i);
     }
+
+    System.out.println();
+    List<List<Integer>> levelOrderTraversal = obj.levelOrder(node6);
+    System.out.println("[");
+    for (List<Integer> level : levelOrderTraversal) {
+      System.out.print("[");
+      for (Integer val : level) {
+        System.out.print(val + ", ");
+      }
+      System.out.println("]");
+    }
+    System.out.println("]");
   }
 }
