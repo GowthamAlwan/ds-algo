@@ -1,7 +1,7 @@
 package com.gowthamalwan.algorithms.contest.leetcode.weekly243;
 
 /**
- * <a href = 'https://leetcode.com/contest/weekly-contest-243/problems/check-if-word-equals-summation-of-two-words/>
+ * <a href = "https://leetcode.com/contest/weekly-contest-243/problems/check-if-word-equals-summation-of-two-words">
  *   1880. Check if Word Equals Summation of Two Words
  * </a>
  */
