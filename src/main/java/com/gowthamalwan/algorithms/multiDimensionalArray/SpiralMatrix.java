@@ -32,44 +32,67 @@ public class SpiralMatrix {
   }
 
   public static List<Integer> spiralOrder(int[][] matrix) {
-    if (matrix == null || matrix.length == 0) return new ArrayList<>();
+    List<Integer> ans = new ArrayList<>();
+    int m = matrix.length;
+    if (m == 0) return ans;
+    int n = matrix[0].length;
+    if (n == 0) return ans;
 
-    int m = matrix[0].length;
-    int n = matrix.length;
-    List<Integer> result = new ArrayList<>(Collections.nCopies(m*n, 0));
-    int l = 0, r = m - 1, t = 0, b = n - 1;
-    int p = 0;
-    
-    while(p < result.size()) {
-      for (int i = l; i < r; ++i) {
-        result.set(p++, matrix[t][i]);
-      }
-      if (p >= result.size())
-        break;
-      result.set(p++, matrix[t++][r]);
+    int[][] dirMatrix = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
+    int[] steps = {n, m - 1};
+    int dir = 0;
+    int row = 0, col = -1;
 
-      for (int i = t; i < b; ++i) {
-        result.set(p++, matrix[i][r]);
+    while (steps[dir % 2] != 0) {
+      for (int i = 0; i < steps[dir % 2]; i++) {
+        row += dirMatrix[dir][0];
+        col += dirMatrix[dir][1];
+        ans.add(matrix[row][col]);
       }
-      if (p >= result.size())
-        break;
-      result.set(p++, matrix[b][r--]);
 
-      for (int i = r; i > l; --i) {
-        result.set(p++, matrix[b][i]);
-      }
-      if (p >= result.size())
-        break;
-      result.set(p++, matrix[b--][l]);
-
-      for (int i = b; i > t; --i) {
-        result.set(p++, matrix[i][l]);
-      }
-      if (p >= result.size())
-        break;
-      result.set(p++, matrix[t][l++]);
+      steps[dir % 2] -= 1;
+      dir = (dir + 1) % 4;
     }
 
-    return result;
+    return ans;
+  }
+
+  public static List<Integer> spiralOrder1(int[][] matrix) {
+    int m = matrix.length;
+    int n = (m > 0) ? matrix[0].length : 0;
+    int left = 0;
+    int top = 0;
+    int right = n - 1;
+    int bottom = m - 1;
+
+    List<Integer> ans = new ArrayList<>(Collections.nCopies(m*n, 0));
+
+    while (left <= right && top <= bottom) {
+      for (int i = left; i <= right; i++) {
+        ans.add(matrix[top][i]);
+      }
+      top++;
+
+      for (int i = top; i <= bottom; i++) {
+        ans.add(matrix[i][right]);
+      }
+      right--;
+
+      if (left > right) {
+        break;
+      }
+
+      for (int i = right; i >= left; i--) {
+        ans.add(matrix[bottom][i]);
+      }
+      bottom--;
+
+      for (int i = bottom; i >= top; i--) {
+        ans.add(matrix[i][left]);
+      }
+      left++;
+    }
+
+    return ans;
   }
 }
